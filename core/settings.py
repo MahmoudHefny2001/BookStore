@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 from dotenv import load_dotenv
 
 load_dotenv('.env')
@@ -14,6 +13,7 @@ SECRET_KEY = 'django-insecure-(0ozr9!t3-4un9@zmk8#s#p3#4_k*yae#q_s+^b1a)z9vp44qh
 DEBUG = True
 # DEBUG = bool(os.environ.get('DEBUG', None))
 
+# ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
@@ -66,7 +66,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# local sqlite:
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -74,7 +73,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #     }
 # }
 
-# Production postgres:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -84,25 +82,11 @@ DATABASES = {
         'HOST': os.environ.get('DATABASE_HOST'),
         'PORT': os.environ.get('DATABASE_PORT'),
         # 'TEST': {
-        #     'NAME': '',
+            # 'NAME': '',
         # },
     }
 }
-
-# local postgres:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DATABASE_NAME'),
-#         'USER': os.environ.get('DATABASE_USER'),
-#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-#         'HOST': os.environ.get('DATABASE_HOST'),
-#         'PORT': os.environ.get('DATABASE_PORT'),
-#         # 'TEST': {
-#         #     'NAME': '',
-#         # },
-#     }
-# }    
+  
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -129,9 +113,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
