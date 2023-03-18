@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
     'store',  #
     'basket',  #
+    'account',  #
+    'orders',  #
 ]
 
 MIDDLEWARE = [
@@ -78,12 +80,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-# }
+AUTH_USER_MODEL = 'account.UserBase'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -100,9 +104,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 # render postgres db connection
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
-}
+# DATABASES = {
+    # 'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
+# }
   
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,6 +148,15 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:8080",
+    "http://192.168.0.222:8080",
+    "https://hefnystore.onrender.com/",
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = [
@@ -174,3 +187,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://192.168.0.222:8080"
 ]
+
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGIN_URL = 'account/login/'
+
+# Email setting
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
