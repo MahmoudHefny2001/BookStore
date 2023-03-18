@@ -1,10 +1,16 @@
-{% extends "./base.html" %}
+{% extends "store/base.html" %}
 {% load static %}
 {% block title %}BookStore{% endblock %}
 {% block content %}
 
 
 <main>
+  <div class="text-center">
+    <div class="alert alert-danger" role="alert">
+      This is the initial phase of my website, currently you can't buy anything.
+      But you have the ability to browse the site and get an account. 
+    </div>
+  </div>
 
   <section class="py-5 text-center container">
     <div class="row py-lg-3">
@@ -13,7 +19,7 @@
         <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
           etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Make an account</a>
+          <a href="{% url "account:register" %}" class="btn btn-primary my-2">Make an account</a>
         </p>
       </div>
     </div>
@@ -29,7 +35,7 @@
 
         <div class="col">
           <div class="card shadow-sm">
-            <img class="img-fluid" src="{{product.image.url}}" alt="../../media/images/default.png">
+            <img class="img-fluid" src="{{product.image.url}}" alt="">
             <div class="card-body">
               <p class="card-text">
                 <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
