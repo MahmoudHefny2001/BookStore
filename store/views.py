@@ -9,8 +9,8 @@ def product_all(request):
         'products': products,
     })
 
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug, in_stock=True)    
+def product_detail(request, id):
+    product = get_object_or_404(Product, pk=id, in_stock=True)    
     return render(request, 'store/products/single.html', {
         'product': product,
     })
