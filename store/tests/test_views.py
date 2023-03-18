@@ -1,5 +1,7 @@
+from importlib import import_module
 from unittest import skip
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpRequest
 from django.test import Client, RequestFactory, TestCase
@@ -64,6 +66,8 @@ class TestViewResponses(TestCase):
     
     def test_home_page_html(self):
         request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = product_all(request)
         html = response.content.decode('utf8')
         # print(html)
@@ -92,7 +96,9 @@ class TestViewResponses(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    # def test_homepage_url(self):
-    #     """
-
-    #     """
+    def test_homepage_url(self):
+        """
+        Test homepage response status
+        """
+        response = self.c.get('/')
+        self.assertEqual(response.status_code, 200)

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "corsheaders", ##
 
     'store',  #
+    'basket',  #
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'store.context_processors.categories',   ##
+                'basket.context_processors.basket',   ##
             ],
         },
     },
@@ -76,12 +78,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -98,9 +100,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # }
 
 # render postgres db connection
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(os.environ.get('DATABASE_URL')),
+# }
   
 
 AUTH_PASSWORD_VALIDATORS = [
