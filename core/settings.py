@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(0ozr9!t3-4un9@zmk8#s#p3#4_k*yae#q_s+^b1a)z9vp44qh'
 # SECRET_KEY = os.environ.get('SECRET_KEY', None)
 
-DEBUG = False
+DEBUG = True
 # DEBUG = bool(os.environ.get('DEBUG', None))
 
 # ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
