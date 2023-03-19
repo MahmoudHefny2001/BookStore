@@ -44,7 +44,7 @@ class Product(TimeStampedModel):
 
     
     def get_absolute_url(self):
-        return reverse('store:product_detail', args=[self.slug])
+        return reverse('store:product_detail', args=[self.pk])
     
 
 
